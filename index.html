@@ -2,7 +2,7 @@
 <html lang="ko" class="scroll-smooth">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, minimum-scale=1.0, user-scalable=yes">
   <title>RUNNING LIFE - 당신의 두 발로 시작하는 러닝 라이프</title>
   
   <!-- Tailwind CSS 로드 -->
@@ -14,7 +14,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
   
-  <!-- FontAwesome 아이콘 로드 (저작권 무료 프리 로드) -->
+  <!-- FontAwesome 아이콘 로드 (저작권 프리 무료 리소스) -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
   <!-- Tailwind Custom Configuration -->
@@ -42,7 +42,7 @@
     /* 커스텀 부드러운 애니메이션 정의 */
     @keyframes subtle-bounce {
       0%, 100% { transform: translateY(0) scale(1); }
-      50% { transform: translateY(-10px) scale(1.05); }
+      50% { transform: translateY(-8px) scale(1.05); }
     }
     .animate-subtle-bounce {
       animation: subtle-bounce 2s infinite ease-in-out;
@@ -52,11 +52,14 @@
       background-color: #0B132B;
       color: #FFFFFF;
       font-family: 'Noto Sans KR', sans-serif;
+      /* 모바일 가로 스크롤 방지 가드레일 */
+      overflow-x: hidden;
+      width: 100%;
     }
     
     /* 스크롤바 커스텀 */
     ::-webkit-scrollbar {
-      width: 8px;
+      width: 6px;
     }
     ::-webkit-scrollbar-track {
       background: #0B132B;
@@ -68,94 +71,98 @@
     ::-webkit-scrollbar-thumb:hover {
       background: #CCFF00;
     }
+
+    /* 터치 하이라이트 투명화 (모바일 웹 탭 잔상 제거) */
+    button, a {
+      -webkit-tap-highlight-color: transparent;
+    }
   </style>
 </head>
-<body class="overflow-x-hidden antialiased">
+<body class="overflow-x-hidden antialiased w-full">
 
-  <!-- Navigation Header -->
-  <header class="fixed top-0 left-0 w-full z-40 bg-brandBase/80 backdrop-blur-md border-b border-white/5">
-    <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+  <!-- Navigation Header (모바일 대응 고정 상단바) -->
+  <header class="fixed top-0 left-0 w-full z-40 bg-brandBase/90 backdrop-blur-md border-b border-white/5">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
       <div class="flex items-center gap-2">
-        <span class="text-brandPoint text-2xl font-black font-title tracking-wider">RUNNING LIFE</span>
+        <span class="text-brandPoint text-lg sm:text-2xl font-black font-title tracking-wider select-none">RUNNING LIFE</span>
       </div>
-      <a href="#cta" class="bg-brandPoint text-brandBase font-title font-bold text-xs md:text-sm px-4 py-2 rounded-full hover:shadow-[0_0_15px_rgba(204,255,0,0.4)] transition-all">
+      <!-- 모바일에서도 터치하기 편한 충분한 크기 확보 -->
+      <a href="#cta" class="bg-brandPoint text-brandBase font-title font-bold text-[11px] sm:text-sm px-4 py-2.5 rounded-full hover:shadow-[0_0_15px_rgba(204,255,0,0.4)] transition-all active:scale-95">
         무료 가이드북 👟
       </a>
     </div>
   </header>
 
   <!-- [HERO SECTION] -->
-  <section class="min-height-[90vh] pt-32 pb-20 md:py-40 flex items-center justify-center relative overflow-hidden">
-    <!-- 역동적인 그리드 배경 장식 -->
+  <section class="min-h-[85vh] pt-24 pb-12 sm:pt-32 sm:pb-20 flex items-center justify-center relative overflow-hidden px-4 sm:px-6">
+    <!-- 역동적인 그리드 배경 장식 (모바일 성능 저하 방지를 위해 간결히 적용) -->
     <div class="absolute inset-0 pointer-events-none opacity-20">
-      <div class="absolute inset-0 bg-[radial-gradient(#CCFF00_1px,transparent_1px)] [background-size:24px_24px] [mask-image:radial-gradient(ellipse_50%_50%_at_50%_50%,#000_100%,transparent_0%)]"></div>
+      <div class="absolute inset-0 bg-[radial-gradient(#CCFF00_1px,transparent_1px)] [background-size:24px_24px] [mask-image:radial-gradient(ellipse_60%_60%_at_50%_50%,#000_100%,transparent_0%)]"></div>
     </div>
 
-    <div class="max-w-4xl mx-auto px-6 text-center relative z-10">
-      <div class="inline-flex items-center gap-2 bg-brandCard/60 border border-brandPoint/20 text-brandPoint text-xs md:text-sm font-title font-bold px-4 py-1.5 rounded-full mb-8">
-        <span class="w-1.5 h-1.5 bg-brandPoint rounded-full animate-ping"></span>
+    <div class="max-w-4xl mx-auto text-center relative z-10 w-full">
+      <div class="inline-flex items-center gap-2 bg-brandCard/60 border border-brandPoint/20 text-brandPoint text-[11px] sm:text-sm font-title font-bold px-4 py-2 rounded-full mb-6">
+        <span class="w-2 h-2 bg-brandPoint rounded-full animate-ping"></span>
         0원으로 시작하는 오늘 저녁의 변화
       </div>
       
-      <!-- 수정 요청 반영: '지금 당장' -> '당장'으로 축소 및 크기 밸런싱 수정, 운동화 이모지 추가 -->
-      <h1 class="font-title text-3xl md:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight md:leading-snug mb-8">
-        준비물은 오직 당신의 두 발,<br class="hidden sm:inline">
-        당장 시작하는 <span class="text-brandPoint relative inline-block">러닝 라이프<span class="inline-block animate-subtle-bounce ml-2 origin-bottom">👟</span></span>
+      <!-- 글자 수 및 크기 밸런싱 수정, 운동화 이모지 크기 모바일 대응 -->
+      <h1 class="font-title text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight leading-snug sm:leading-tight md:leading-snug mb-6 text-white">
+        준비물은 오직 당신의 두 발,<br class="hidden xs:inline">
+        당장 시작하는 <span class="text-brandPoint relative inline-block">러닝 라이프<span class="inline-block animate-subtle-bounce ml-1.5 origin-bottom text-2xl sm:text-4xl lg:text-5xl">👟</span></span>
       </h1>
       
-      <p class="text-brandTextSub text-base md:text-xl font-light leading-relaxed max-w-2xl mx-auto mb-10">
-        비싼 회원권 없이도, 거창한 전문 장비 구매 없이도 오늘 저녁 바로 시작할 수 있습니다. 당신의 페이스에 맞춘 가벼운 출발이 기다립니다.
+      <p class="text-brandTextSub text-xs sm:text-base md:text-lg font-light leading-relaxed max-w-xl mx-auto mb-8 px-2">
+        비싼 회원권이나 거창한 전문 장비 없이도 오늘 저녁 바로 시작할 수 있습니다. 당신의 페이스에 맞춘 가벼운 출발을 경험해 보세요.
       </p>
       
-      <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
-        <a href="#cta" class="w-full sm:w-auto bg-brandPoint text-brandBase font-title font-extrabold text-base px-8 py-4 rounded-xl hover:translate-y-[-2px] hover:shadow-[0_10px_30px_rgba(204,255,0,0.3)] transition-all text-center">
+      <!-- 터치 친화적 구조의 투버튼 (모바일 가득 채우기 -> 태블릿 나란히 배치) -->
+      <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center w-full max-w-sm sm:max-w-none mx-auto px-4 sm:px-0">
+        <a href="#cta" class="w-full sm:w-auto bg-brandPoint text-brandBase font-title font-extrabold text-sm sm:text-base px-8 py-4 rounded-xl hover:translate-y-[-2px] hover:shadow-[0_10px_30px_rgba(204,255,0,0.3)] active:scale-[0.98] transition-all text-center">
           지금 첫걸음 내딛기
         </a>
-        <a href="#intro" class="w-full sm:w-auto bg-white/5 border border-white/10 text-white font-title font-semibold text-base px-8 py-4 rounded-xl hover:bg-white/10 transition-all text-center">
+        <a href="#intro" class="w-full sm:w-auto bg-white/5 border border-white/10 text-white font-title font-semibold text-sm sm:text-base px-8 py-4 rounded-xl hover:bg-white/10 active:scale-[0.98] transition-all text-center">
           스토리 읽어보기
         </a>
       </div>
     </div>
   </section>
 
-  <!-- [INTRO SECTION] - 스토리텔링: 공감과 격려 -->
-  <section id="intro" class="bg-brandCard/40 border-y border-white/5 py-24 relative">
-    <div class="max-w-6xl mx-auto px-6">
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+  <!-- [INTRO SECTION] - 스토리텔링: 공감과 격려 (모바일 패딩 압축) -->
+  <section id="intro" class="bg-brandCard/40 border-y border-white/5 py-12 sm:py-16 relative px-4 sm:px-6">
+    <div class="max-w-6xl mx-auto">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
         
         <!-- 왼쪽: 2030 공감대 -->
-        <div class="lg:col-span-7 space-y-6">
-          <span class="text-brandPoint font-title text-xs md:text-sm font-bold tracking-wider uppercase block">Empathy & Realize</span>
-          <h2 class="font-title text-2xl md:text-4xl font-extrabold leading-tight text-white">
-            비싼 회원권만 끊어놓고<br>
+        <div class="lg:col-span-7 space-y-4">
+          <span class="text-brandPoint font-title text-xs font-bold tracking-wider uppercase block">Empathy & Realize</span>
+          <h2 class="font-title text-xl sm:text-2xl md:text-3xl font-extrabold leading-snug text-white">
+            비싼 회원권만 끊어놓고<br class="hidden sm:inline">
             결국 포기하고 자책하셨나요?
           </h2>
-          <p class="text-brandTextSub text-sm md:text-base font-light leading-relaxed">
-            헬스장이나 필라테스 등록 후 기부만 했던 무거운 마음은 이제 내려놓으세요. 러닝은 장비나 비용 부담 없이 언제든 성공 경험을 쌓을 수 있는 가장 솔직한 운동입니다.
-          </p>
-          <p class="text-brandTextSub text-sm md:text-base font-light leading-relaxed">
-            처음부터 거창한 마라톤 완주를 꿈꾸지 않아도 괜찮습니다. 오늘 당장 신발을 신고 밖으로 나가 흙을 밟는 것, 오직 나만의 속도를 찾는 것부터가 완벽한 러닝의 시작입니다.
+          <p class="text-brandTextSub text-xs sm:text-sm md:text-base font-light leading-relaxed">
+            기부만 했던 무거운 마음은 내려놓으세요. 러닝은 장비나 비용 부담 없이 언제든 나만의 속도를 찾고 성공 경험을 쌓을 수 있는 가장 솔직한 운동입니다. 단 5분의 시작도 완벽합니다.
           </p>
         </div>
         
-        <!-- 오른쪽: 1km도 훌륭한 성공이라는 격려 -->
-        <div class="lg:col-span-5 bg-brandCard border border-white/5 p-8 rounded-2xl relative shadow-xl">
-          <div class="absolute top-4 right-4 text-brandPoint/20 text-5xl">
+        <!-- 오른쪽: 1km도 훌륭한 성공이라는 격려 (모바일 터치 패딩 대응) -->
+        <div class="lg:col-span-5 bg-brandCard border border-white/5 p-5 sm:p-6 rounded-2xl relative shadow-xl">
+          <div class="absolute top-4 right-4 text-brandPoint/20 text-3xl sm:text-4xl">
             <i class="fa-solid fa-quote-right"></i>
           </div>
-          <div class="text-brandPoint font-title font-bold text-lg mb-4">
+          <div class="text-brandPoint font-title font-bold text-sm sm:text-base mb-2 pr-6">
             "멈추지 않는다면 모든 걸음이 성공입니다."
           </div>
-          <p class="text-brandTextSub text-sm md:text-base font-light leading-relaxed mb-6">
-            1km를 뛰더라도, 5km를 뛰더라도, 혹은 10km를 뛰더라도 모두 훌륭한 운동이 됩니다. 타인과 비교하지 않고 단 5분이라도 나만의 페이스로 달렸다면 당신은 이미 완벽한 러너입니다. 포기 없는 지속 가능한 러닝의 진짜 힘을 직접 몸과 마음으로 느껴보세요.
+          <p class="text-brandTextSub text-xs sm:text-sm font-light leading-relaxed mb-4">
+            1km든 10km든 모두 훌륭한 완주입니다. 타인과 비교하지 않고 단 5분이라도 나만의 페이스로 달렸다면 당신은 이미 완벽한 러너입니다. 지속 가능한 성취감을 직접 느껴보세요.
           </p>
           <div class="flex items-center gap-3">
-            <div class="w-10 h-10 bg-brandPoint/10 rounded-full flex items-center justify-center text-brandPoint">
+            <div class="w-8 h-8 bg-brandPoint/10 rounded-full flex items-center justify-center text-brandPoint text-xs shrink-0">
               <i class="fa-solid fa-heart-pulse"></i>
             </div>
             <div>
-              <div class="text-xs text-white font-semibold">러닝 라이프 페이스 가이드</div>
-              <div class="text-[11px] text-brandTextSub">당신의 두 발이 최고의 가이드라인입니다.</div>
+              <div class="text-[11px] sm:text-xs text-white font-semibold">러닝 라이프 페이스 가이드</div>
+              <div class="text-[9px] sm:text-[10px] text-brandTextSub">당신의 두 발이 최고의 가이드라인입니다.</div>
             </div>
           </div>
         </div>
@@ -164,90 +171,90 @@
     </div>
   </section>
 
-  <!-- [USP CARDS SECTION] - 강점 카드 -->
-  <section id="features" class="py-24">
-    <div class="max-w-6xl mx-auto px-6">
-      <div class="text-center max-w-2xl mx-auto mb-16">
-        <span class="text-brandPoint font-title text-xs md:text-sm font-bold tracking-wider uppercase block mb-3">ROADMAP & SOLUTION</span>
-        <h2 class="font-title text-3xl md:text-4xl font-extrabold text-white">러닝 라이프가 제안하는 <span class="text-brandPoint">4가지 로드맵</span></h2>
-        <p class="text-brandTextSub text-sm md:text-base font-light mt-4">단순히 무작정 뛰는 것과는 다릅니다. 초보 러너의 성공율을 비약적으로 올리는 실증적 팁과 로드맵을 선사합니다.</p>
+  <!-- [USP CARDS SECTION] - 강점 카드 (모바일 터치 인터랙션 최적화) -->
+  <section id="features" class="py-12 sm:py-16 px-4 sm:px-6">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center max-w-2xl mx-auto mb-10">
+        <span class="text-brandPoint font-title text-xs font-bold tracking-wider uppercase block mb-2">ROADMAP & SOLUTION</span>
+        <h2 class="font-title text-xl sm:text-2xl md:text-3xl font-extrabold text-white">러닝 라이프가 제안하는 <span class="text-brandPoint">4가지 로드맵</span></h2>
+        <p class="text-brandTextSub text-[11px] sm:text-xs md:text-sm font-light mt-2 px-2">초보 러너의 성공률을 비약적으로 올리는 실증적 팁과 압축 로드맵을 선사합니다.</p>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
         
         <!-- 카드 1: 접근성 -->
-        <div class="bg-brandCard border border-white/5 hover:border-brandPoint/20 p-8 rounded-2xl transition-all relative group overflow-hidden shadow-lg">
-          <div class="absolute -top-4 -right-4 text-9xl font-black text-white/[0.02] group-hover:text-brandPoint/[0.04] transition-all font-title">01</div>
-          <div class="w-12 h-12 bg-brandPoint/10 rounded-xl flex items-center justify-center text-brandPoint mb-6">
-            <i class="fa-solid fa-wallet text-xl"></i>
+        <div class="bg-brandCard border border-white/5 hover:border-brandPoint/20 p-5 sm:p-6 rounded-2xl transition-all relative group overflow-hidden shadow-lg">
+          <div class="absolute -top-4 -right-4 text-6xl sm:text-8xl font-black text-white/[0.02] group-hover:text-brandPoint/[0.04] transition-all font-title">01</div>
+          <div class="w-10 h-10 bg-brandPoint/10 rounded-xl flex items-center justify-center text-brandPoint mb-4">
+            <i class="fa-solid fa-wallet text-base sm:text-lg"></i>
           </div>
-          <span class="text-brandPoint text-xs font-bold tracking-wider font-title uppercase block mb-2">ACCESSIBILITY</span>
-          <h3 class="font-title text-xl font-bold text-white mb-4">0원으로 시작하는 압도적 접근성</h3>
-          <p class="text-brandTextSub text-sm md:text-base font-light leading-relaxed">
-            비싼 장비 구매나 목돈이 드는 헬스장 회원권 비용은 필요 없습니다. 준비물은 오직 0원. 지금 거실에 놓여있는 편안한 아무 운동화나 신고 바로 문 밖을 열고 나서는 초경량 진입 루트를 선물해 드립니다.
+          <span class="text-brandPoint text-[9px] sm:text-[10px] font-bold tracking-wider font-title uppercase block mb-1">ACCESSIBILITY</span>
+          <h3 class="font-title text-base sm:text-lg font-bold text-white mb-2">0원으로 시작하는 압도적 접근성</h3>
+          <p class="text-brandTextSub text-xs md:text-sm font-light leading-relaxed">
+            비싼 장비나 회원권 비용은 필요 없습니다. 준비물은 오직 0원. 거실에 놓인 편안한 신발을 신고 지금 바로 문 밖을 나서는 가장 가벼운 첫걸음을 선물합니다.
           </p>
         </div>
 
-        <!-- 카드 2: 발 타입별 진단 (인터랙티브 기능 포함) -->
-        <div class="bg-brandCard border border-white/5 hover:border-brandPoint/20 p-8 rounded-2xl transition-all relative group overflow-hidden shadow-lg flex flex-col justify-between">
+        <!-- 카드 2: 발 타입별 진단 (모바일 가독성 및 대형 터치 버튼으로 개편) -->
+        <div class="bg-brandCard border border-white/5 hover:border-brandPoint/20 p-5 sm:p-6 rounded-2xl transition-all relative group overflow-hidden shadow-lg flex flex-col justify-between">
           <div>
-            <div class="absolute -top-4 -right-4 text-9xl font-black text-white/[0.02] group-hover:text-brandPoint/[0.04] transition-all font-title">02</div>
-            <div class="w-12 h-12 bg-brandPoint/10 rounded-xl flex items-center justify-center text-brandPoint mb-6">
-              <i class="fa-solid fa-shoe-prints text-xl"></i>
+            <div class="absolute -top-4 -right-4 text-6xl sm:text-8xl font-black text-white/[0.02] group-hover:text-brandPoint/[0.04] transition-all font-title">02</div>
+            <div class="w-10 h-10 bg-brandPoint/10 rounded-xl flex items-center justify-center text-brandPoint mb-4">
+              <i class="fa-solid fa-shoe-prints text-base sm:text-lg"></i>
             </div>
-            <span class="text-brandPoint text-xs font-bold tracking-wider font-title uppercase block mb-2">EXPERT GUIDE</span>
-            <h3 class="font-title text-xl font-bold text-white mb-4">3가지 발 타입별 러닝화 가이드</h3>
-            <p class="text-brandTextSub text-sm md:text-base font-light leading-relaxed mb-6">
-              내 발이 내회전(안쪽 쏠림)인지 외전(바깥쪽 치우침)인지 정밀 진단해 드립니다. 시중의 쿠션화와 안정화 중 나에게 딱 맞는 러닝 신발 종류를 실패와 부상 없이 초이스하는 지식을 나눕니다.
+            <span class="text-brandPoint text-[9px] sm:text-[10px] font-bold tracking-wider font-title uppercase block mb-1">EXPERT GUIDE</span>
+            <h3 class="font-title text-base sm:text-lg font-bold text-white mb-2">3가지 발 타입별 러닝화 가이드</h3>
+            <p class="text-brandTextSub text-xs md:text-sm font-light leading-relaxed mb-4">
+              내 발이 안쪽으로 쏠리는지 바깥쪽으로 치우치는지 정밀 진단합니다. 쿠션화와 안정화 중 실패 없이 내 발에 꼭 맞는 신발을 초이스하는 지식을 나눕니다.
             </p>
           </div>
-          <!-- 실시간 간이 진단 위젯 -->
-          <div class="bg-brandBase/80 border border-white/5 p-4 rounded-xl mt-4">
-            <div class="text-xs font-semibold text-brandPoint mb-3"><i class="fa-solid fa-wand-magic-sparkles mr-1"></i> 간단 자가진단 해보기</div>
-            <div class="grid grid-cols-3 gap-2">
-              <button onclick="diagnoseFoot('flat')" class="bg-white/5 hover:bg-brandPoint hover:text-brandBase text-[11px] py-1.5 px-1 rounded transition-all text-center">평발 / 내회전</button>
-              <button onclick="diagnoseFoot('normal')" class="bg-white/5 hover:bg-brandPoint hover:text-brandBase text-[11px] py-1.5 px-1 rounded transition-all text-center">정상 / 뉴트럴</button>
-              <button onclick="diagnoseFoot('high')" class="bg-white/5 hover:bg-brandPoint hover:text-brandBase text-[11px] py-1.5 px-1 rounded transition-all text-center">요족 / 외회전</button>
+          <!-- 실시간 간이 진단 위젯 (터치 영역 44px 확보 및 세로 그리드 구성) -->
+          <div class="bg-brandBase/80 border border-white/5 p-3 rounded-xl mt-2">
+            <div class="text-[11px] font-semibold text-brandPoint mb-2"><i class="fa-solid fa-wand-magic-sparkles mr-1"></i> 간단 자가진단 해보기</div>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-2">
+              <button onclick="diagnoseFoot('flat')" class="bg-white/5 hover:bg-brandPoint hover:text-brandBase text-xs py-3 px-2 rounded-lg transition-all text-center font-medium active:scale-95">평발 / 내회전</button>
+              <button onclick="diagnoseFoot('normal')" class="bg-white/5 hover:bg-brandPoint hover:text-brandBase text-xs py-3 px-2 rounded-lg transition-all text-center font-medium active:scale-95">정상 / 뉴트럴</button>
+              <button onclick="diagnoseFoot('high')" class="bg-white/5 hover:bg-brandPoint hover:text-brandBase text-xs py-3 px-2 rounded-lg transition-all text-center font-medium active:scale-95">요족 / 외회전</button>
             </div>
-            <div id="diag-result" class="text-xs text-brandTextSub mt-3 hidden p-2 bg-brandCard rounded border border-white/5"></div>
+            <div id="diag-result" class="text-[11px] text-brandTextSub mt-2.5 hidden p-2.5 bg-brandCard rounded-lg border border-white/5"></div>
           </div>
         </div>
 
-        <!-- 카드 3: 호흡 및 페이스 (인터랙티브 기능 포함) -->
-        <div class="bg-brandCard border border-white/5 hover:border-brandPoint/20 p-8 rounded-2xl transition-all relative group overflow-hidden shadow-lg flex flex-col justify-between">
+        <!-- 카드 3: 호흡 및 페이스 (모바일 터치 및 레이아웃 패딩 최적화) -->
+        <div class="bg-brandCard border border-white/5 hover:border-brandPoint/20 p-5 sm:p-6 rounded-2xl transition-all relative group overflow-hidden shadow-lg flex flex-col justify-between">
           <div>
-            <div class="absolute -top-4 -right-4 text-9xl font-black text-white/[0.02] group-hover:text-brandPoint/[0.04] transition-all font-title">03</div>
-            <div class="w-12 h-12 bg-brandPoint/10 rounded-xl flex items-center justify-center text-brandPoint mb-6">
-              <i class="fa-solid fa-gauge-high text-xl"></i>
+            <div class="absolute -top-4 -right-4 text-6xl sm:text-8xl font-black text-white/[0.02] group-hover:text-brandPoint/[0.04] transition-all font-title">03</div>
+            <div class="w-10 h-10 bg-brandPoint/10 rounded-xl flex items-center justify-center text-brandPoint mb-4">
+              <i class="fa-solid fa-gauge-high text-base sm:text-lg"></i>
             </div>
-            <span class="text-brandPoint text-xs font-bold tracking-wider font-title uppercase block mb-2">PACE CONTROL</span>
-            <h3 class="font-title text-xl font-bold text-white mb-4">1km 페이스 조절 가이드</h3>
-            <p class="text-brandTextSub text-sm md:text-base font-light leading-relaxed mb-6">
-              숨이 너무 가쁘게 턱밑까지 차올라 지쳐 나가떨어지는 악순환을 방지합니다. 첫 1km를 다치지 않고 가볍게 유산소 단계로 유지시키는 '습-습-후-후' 이중 호흡 주기법과 체력 배분 가이드를 제공합니다.
+            <span class="text-brandPoint text-[9px] sm:text-[10px] font-bold tracking-wider font-title uppercase block mb-1">PACE CONTROL</span>
+            <h3 class="font-title text-base sm:text-lg font-bold text-white mb-2">1km 페이스 조절 가이드</h3>
+            <p class="text-brandTextSub text-xs md:text-sm font-light leading-relaxed mb-4">
+              숨이 너무 가쁘게 턱밑까지 차올라 금방 지치지 않도록 돕습니다. 첫 1km를 가뿐히 유산소로 완주하게 하는 '습-습-후-후' 이중 호흡법과 체력 배분 주기를 전수합니다.
             </p>
           </div>
           <!-- 호흡 메트로놈 체험존 -->
-          <div class="bg-brandBase/80 border border-white/5 p-4 rounded-xl mt-4 flex items-center justify-between">
+          <div class="bg-brandBase/80 border border-white/5 p-3 rounded-xl flex flex-col sm:flex-row gap-2 sm:gap-0 items-start sm:items-center justify-between mt-2">
             <div>
-              <div class="text-xs font-semibold text-brandPoint"><i class="fa-solid fa-wind mr-1"></i> 이중 호흡 가이드</div>
-              <div class="text-[11px] text-brandTextSub mt-1">2걸음 들이쉬고 2걸음 내쉬는 페이스 리듬</div>
+              <div class="text-[11px] font-semibold text-brandPoint"><i class="fa-solid fa-wind mr-1"></i> 이중 호흡 가이드</div>
+              <div class="text-[10px] text-brandTextSub">2걸음 마시고, 2걸음 내뱉기</div>
             </div>
-            <button id="pacer-btn" onclick="togglePacer()" class="bg-brandPoint/10 border border-brandPoint/30 text-brandPoint hover:bg-brandPoint hover:text-brandBase text-xs py-2 px-4 rounded-lg font-bold transition-all">
+            <button id="pacer-btn" onclick="togglePacer()" class="w-full sm:w-auto bg-brandPoint/10 border border-brandPoint/30 text-brandPoint hover:bg-brandPoint hover:text-brandBase text-[11px] py-2.5 px-4 rounded-lg font-bold transition-all active:scale-95 text-center shrink-0">
               체험 켜기
             </button>
           </div>
         </div>
 
         <!-- 카드 4: 러너스하이 -->
-        <div class="bg-brandCard border border-white/5 hover:border-brandPoint/20 p-8 rounded-2xl transition-all relative group overflow-hidden shadow-lg">
-          <div class="absolute -top-4 -right-4 text-9xl font-black text-white/[0.02] group-hover:text-brandPoint/[0.04] transition-all font-title">04</div>
-          <div class="w-12 h-12 bg-brandPoint/10 rounded-xl flex items-center justify-center text-brandPoint mb-6">
-            <i class="fa-solid fa-cloud-bolt text-xl"></i>
+        <div class="bg-brandCard border border-white/5 hover:border-brandPoint/20 p-5 sm:p-6 rounded-2xl transition-all relative group overflow-hidden shadow-lg">
+          <div class="absolute -top-4 -right-4 text-6xl sm:text-8xl font-black text-white/[0.02] group-hover:text-brandPoint/[0.04] transition-all font-title">04</div>
+          <div class="w-10 h-10 bg-brandPoint/10 rounded-xl flex items-center justify-center text-brandPoint mb-4">
+            <i class="fa-solid fa-cloud-bolt text-base sm:text-lg"></i>
           </div>
-          <span class="text-brandPoint text-xs font-bold tracking-wider font-title uppercase block mb-2">RUNNER'S HIGH</span>
-          <h3 class="font-title text-xl font-bold text-white mb-4">30분 러너스하이 진입 법칙</h3>
-          <p class="text-brandTextSub text-sm md:text-base font-light leading-relaxed">
-            일정 수준 이상 완벽하게 몰입했을 때 찾아오는 뇌 내부의 강력한 베타 엔도르핀 폭발, 일명 '러너스하이(Runner's High)'의 강렬한 정화와 극치감을 이끕니다. 단조로운 고통을 상쇄하고 마라톤의 성취감에 도달하게 하는 완주 마일스톤입니다.
+          <span class="text-brandPoint text-[9px] sm:text-[10px] font-bold tracking-wider font-title uppercase block mb-1">RUNNER'S HIGH</span>
+          <h3 class="font-title text-base sm:text-lg font-bold text-white mb-2">30분 러너스하이 진입 법칙</h3>
+          <p class="text-brandTextSub text-xs md:text-sm font-light leading-relaxed">
+            일정 속도 이상 몰입했을 때 찾아오는 맑은 정신, 일명 '러너스하이(Runner's High)'의 극치감과 마라톤 완주의 강력한 성취감에 도달하게 하는 정밀 마일스톤입니다.
           </p>
         </div>
 
@@ -256,34 +263,33 @@
   </section>
 
   <!-- [CTA SECTION] - 행동 유도 및 모달 제어 -->
-  <!-- 수정 요청 반영: "오늘 저녁, 당신의 가벼운 두 발로 새로운 러닝 라이프를 펼치세요 👟" 바운스 이모지 탑재 -->
-  <section class="bg-gradient-to-t from-brandBase via-brandCard/60 to-brandBase relative py-28 border-t border-white/5" id="cta">
+  <section class="bg-gradient-to-t from-brandBase via-brandCard/60 to-brandBase relative py-16 sm:py-20 border-t border-white/5 px-4 sm:px-6" id="cta">
     <div class="absolute inset-0 pointer-events-none overflow-hidden">
-      <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-brandPoint/5 rounded-full blur-3xl"></div>
+      <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[280px] sm:w-[450px] h-[280px] sm:h-[450px] bg-brandPoint/5 rounded-full blur-3xl"></div>
     </div>
 
-    <div class="max-w-3xl mx-auto px-6 text-center relative z-10">
-      <h3 class="font-title text-3xl md:text-5xl font-black tracking-tight mb-6 leading-tight">
-        오늘 저녁, 당신의 가벼운 두 발로<br>
+    <div class="max-w-3xl mx-auto text-center relative z-10 w-full">
+      <h3 class="font-title text-xl sm:text-3xl md:text-4xl font-black tracking-tight mb-4 leading-snug">
+        오늘 저녁, 당신의 가벼운 두 발로<br class="hidden xs:inline">
         새로운 <span class="text-brandPoint">러닝 라이프</span>를 펼치세요 <span class="inline-block animate-subtle-bounce align-middle origin-bottom" style="animation-duration: 2s;">👟</span>
       </h3>
-      <p class="text-brandTextSub text-sm md:text-lg font-light leading-relaxed mb-10 max-w-xl mx-auto">
-        헬스장 기부천사에서 벗어나 언제든지 내 집 앞을 완벽한 나만의 피트니스 트랙으로 활용할 차례입니다. 러닝 라이프 무료 입문 꿀팁 가이드북을 지금 바로 다운로드해 보세요.
+      <p class="text-brandTextSub text-xs sm:text-base font-light leading-relaxed mb-8 max-w-lg mx-auto px-2">
+        비싼 회원권 없이도 집 앞을 완벽한 나만의 피트니스 트랙으로 활용해 보세요. 러닝 라이프 무료 입문 가이드북을 지금 바로 받아보실 수 있습니다.
       </p>
       
-      <!-- 다운로드 버튼 -->
-      <button onclick="openModal()" class="inline-flex items-center gap-3 bg-brandPoint text-brandBase font-title font-extrabold text-lg px-10 py-5 rounded-2xl hover:translate-y-[-3px] hover:shadow-[0_15px_35px_rgba(204,255,0,0.4)] transition-all">
-        <i class="fa-solid fa-circle-down"></i> 가이드북 0원 혜택 받기
+      <!-- 다운로드 버튼 (모바일 최소 가로 터치 영역 확장) -->
+      <button onclick="openModal()" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-brandPoint text-brandBase font-title font-extrabold text-sm sm:text-base px-8 py-4 rounded-xl hover:translate-y-[-3px] hover:shadow-[0_15px_35px_rgba(204,255,0,0.4)] active:scale-95 transition-all">
+        <i class="fa-solid fa-circle-down text-base"></i> 가이드북 0원 혜택 받기
       </button>
     </div>
   </section>
 
   <!-- [FOOTER] -->
-  <footer class="bg-[#050B19] border-t border-white/5 py-12 px-6">
+  <footer class="bg-[#050B19] border-t border-white/5 py-10 px-4 sm:px-6">
     <div class="max-w-6xl mx-auto text-center space-y-4">
-      <div class="text-brandPoint text-lg font-black tracking-wider">RUNNING LIFE</div>
-      <p class="text-brandTextSub text-sm max-w-md mx-auto">비싼 회원권에 속아 자책하지 마세요. 단 1분이라도 달린다면 당신도 훌륭한 러너입니다.</p>
-      <div class="text-[11px] text-brandTextSub/40 pt-4">&copy; 2026 RUNNING LIFE. All Rights Reserved.</div>
+      <div class="text-brandPoint text-base sm:text-lg font-black tracking-wider">RUNNING LIFE</div>
+      <p class="text-brandTextSub text-xs sm:text-sm max-w-md mx-auto leading-relaxed">비싼 회원권에 속아 자책하지 마세요. 단 1분이라도 달린다면 당신도 훌륭한 러너입니다.</p>
+      <div class="text-[10px] sm:text-[11px] text-brandTextSub/40 pt-4">&copy; 2026 RUNNING LIFE. All Rights Reserved.</div>
     </div>
   </footer>
 
@@ -291,30 +297,31 @@
        CUSTOM UI WIDGETS & MODAL / INTERACTIVITY JAVASCRIPT
   ----------------------------------------------------------------- -->
   
-  <!-- 커스텀 가이드북 다운로드 모달창 (alert 배제) -->
-  <div id="download-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-brandBase/80 backdrop-blur-md hidden opacity-0 transition-all duration-300">
-    <div class="bg-brandCard border border-brandPoint/20 max-w-md w-full rounded-2xl p-8 relative shadow-2xl">
-      <button onclick="closeModal()" class="absolute top-4 right-4 text-brandTextSub hover:text-white transition-all text-xl">
+  <!-- 커스텀 가이드북 다운로드 모달창 (alert 배제, 모달 내부 스크롤 대응) -->
+  <div id="download-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-brandBase/85 backdrop-blur-md hidden opacity-0 transition-all duration-300">
+    <div class="bg-brandCard border border-brandPoint/20 max-w-md w-full rounded-2xl p-6 sm:p-8 relative shadow-2xl overflow-y-auto max-h-[90vh]">
+      <!-- 터치하기 쉬운 우측 상단 닫기 버튼 영역 확장 -->
+      <button onclick="closeModal()" class="absolute top-4 right-4 text-brandTextSub hover:text-white transition-all text-2xl p-2" aria-label="닫기">
         <i class="fa-solid fa-xmark"></i>
       </button>
-      <div class="text-center space-y-4">
-        <div class="w-16 h-16 bg-brandPoint/10 rounded-full flex items-center justify-center text-brandPoint text-3xl mx-auto animate-bounce">
+      <div class="text-center space-y-4 pt-2">
+        <div class="w-14 h-14 sm:w-16 sm:h-16 bg-brandPoint/10 rounded-full flex items-center justify-center text-brandPoint text-2xl sm:text-3xl mx-auto animate-bounce">
           <i class="fa-solid fa-file-pdf"></i>
         </div>
-        <h4 class="font-title text-xl font-bold">가이드북 다운로드 완료!</h4>
-        <p class="text-brandTextSub text-sm leading-relaxed">
+        <h4 class="font-title text-lg sm:text-xl font-bold">가이드북 다운로드 완료!</h4>
+        <p class="text-brandTextSub text-xs sm:text-sm leading-relaxed">
           <strong>[러닝 라이프 첫걸음 가이드.pdf]</strong> 파일이 성공적으로 준비되었습니다.<br>
           오늘 해가 저무는 즉시 운동화를 가볍게 신고 밖으로 나가 숨겨진 나만의 트랙을 펼쳐보세요.
         </p>
-        <button onclick="closeModal()" class="w-full bg-brandPoint text-brandBase font-title font-bold py-3 rounded-xl hover:bg-white transition-all">
+        <button onclick="closeModal()" class="w-full bg-brandPoint text-brandBase font-title font-bold py-3.5 rounded-xl hover:bg-white active:scale-[0.98] transition-all text-sm">
           화이팅, 바로 나가기! 👟
         </button>
       </div>
     </div>
   </div>
 
-  <!-- 토스트 알림 컨테이너 -->
-  <div id="toast-container" class="fixed bottom-6 right-6 z-50 space-y-3 pointer-events-none"></div>
+  <!-- 토스트 알림 컨테이너 (모바일에서 화면 하단 중앙 정렬, 데스크톱에서 우하단) -->
+  <div id="toast-container" class="fixed bottom-6 left-1/2 -translate-x-1/2 md:translate-x-0 md:left-auto md:right-6 z-50 space-y-3 pointer-events-none w-[90%] max-w-sm"></div>
 
   <script>
     // 1. 발 타입 자가진단 (USP 2)
@@ -337,7 +344,7 @@
       }
       
       resultDiv.innerHTML = `
-        <div class="font-bold text-white mb-1"><i class="fa-solid fa-circle-info mr-1 text-brandPoint"></i> ${title}</div>
+        <div class="font-bold text-white mb-1.5 text-xs"><i class="fa-solid fa-circle-info mr-1 text-brandPoint"></i> ${title}</div>
         <div class="text-[11px] text-brandTextSub leading-relaxed">${desc}</div>
       `;
       
@@ -405,10 +412,11 @@
       }
     }
 
-    // 3. 커스텀 모달 제어
+    // 3. 커스텀 모달 제어 (IOS 등 다양한 스크롤 잠금 처리 대응)
     function openModal() {
       const modal = document.getElementById('download-modal');
       modal.classList.remove('hidden');
+      document.body.style.overflow = 'hidden'; // 부모 스크롤 잠금
       setTimeout(() => {
         modal.classList.remove('opacity-0');
       }, 10);
@@ -417,17 +425,18 @@
     function closeModal() {
       const modal = document.getElementById('download-modal');
       modal.classList.add('opacity-0');
+      document.body.style.overflow = ''; // 부모 스크롤 잠금 해제
       setTimeout(() => {
         modal.classList.add('hidden');
       }, 300);
     }
 
-    // 4. 안전하고 매끄러운 자체 Toast 시스템
+    // 4. 안전하고 매끄러운 자체 Toast 시스템 (모바일 하단 터치 영역 가림 방지를 위해 2.5초 후 자동 삭제)
     function showToast(message, duration = 2500) {
       const container = document.getElementById('toast-container');
       const toast = document.createElement('div');
-      toast.className = "bg-brandCard/95 border border-brandPoint/30 text-white text-xs px-4 py-3 rounded-xl shadow-lg flex items-center gap-2 transform translate-y-2 opacity-0 transition-all duration-300 pointer-events-auto backdrop-blur-sm";
-      toast.innerHTML = `<span class="text-brandPoint">🏃‍♂️</span> <span>${message}</span>`;
+      toast.className = "bg-brandCard/95 border border-brandPoint/30 text-white text-xs px-4 py-3.5 rounded-xl shadow-lg flex items-center gap-2 transform translate-y-2 opacity-0 transition-all duration-300 pointer-events-auto backdrop-blur-sm justify-center text-center";
+      toast.innerHTML = `<span class="text-brandPoint shrink-0">🏃‍♂️</span> <span>${message}</span>`;
       
       container.appendChild(toast);
       
